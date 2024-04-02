@@ -5,11 +5,12 @@ gfskDemod = comm.CPMDemodulator( ...
     'ModulationIndex',1, ...
     'BitOutput',true); %Crea el demodulador
 
-filetext=fileread('mensaje_hamming.txt') %Lee el archivo con ruido y modulacion GFSK
-filetext = strrep(filetext, '[', ''); % Elimina el paréntesis cuadrado izquierdo
-filetext = strrep(filetext, ']', '')
-filetext=str2num(filetext);
-size(filetext)
+filetext=fileread('salida_canal.txt'); %Lee el archivo con ruido y modulacion GFSK
+filetext = strrep(filetext, '(', ''); % Elimina el paréntesis  izquierdo
+filetext = strrep(filetext, ')', ''); % Elimina el paréntesis derecho
+filetext=str2num(filetext)
+size(filetext);
 tic();% Tiempo que dura demodulando
-y = gfskDeMod(filetext'); %Demodula el archivo con ruido
+y = gfskDemod(filetext); %Demodula el archivo con ruido
 tiempo=toc()
+plot(real(y))
