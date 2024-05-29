@@ -4,7 +4,7 @@ gfskMod = comm.CPMModulator( ...
     'BandwidthTimeProduct',0.5, ...
     'ModulationIndex',1, ...
     'BitInput',true);
-filetext=fileread('mensaje_hamming.txt')
+filetext=fileread('mensaje_hamming7.txt')
 filetext = strrep(filetext, '[', ''); % Elimina el paréntesis cuadrado izquierdo
 filetext = strrep(filetext, ']', '')
 filetext=str2num(filetext);
@@ -12,4 +12,4 @@ size(filetext)
 tic();
 y = gfskMod(filetext');
 tiempo=toc()
-csvwrite('modulado.txt',y)
+csvwrite(['modulado_hamming7.txt'],y)
